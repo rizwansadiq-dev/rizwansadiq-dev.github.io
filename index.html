@@ -742,10 +742,10 @@
     #contact { background: var(--bg); padding-bottom: 60px; }
 
     .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: row;
       gap: 2rem;
-      align-items: start;
+      align-items: flex-start;
       max-width: 800px;
     }
 
@@ -753,8 +753,11 @@
       font-size: 0.95rem;
       color: var(--text);
       line-height: 1.8;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
+
+    .contact-left { flex: 1; }
+    .contact-right { flex: 1; }
 
     .contact-links {
       display: flex;
@@ -1288,14 +1291,15 @@
   <h2>Contact</h2>
 
   <div class="contact-grid">
-    <div>
+    <div class="contact-left">
       <p class="contact-intro">
-        Available for remote game development roles — mobile studios, international teams, and freelance projects welcome. Let's build something great.
+        Open to <strong>remote and on-site</strong> game development roles worldwide — mobile studios, international teams, and freelance projects welcome. Let's build something great.
       </p>
       <a class="btn btn-primary" href="https://drive.google.com/file/d/1hGMyT8BD6jvs2201RocqbvJe720Jr_85/view?usp=share_link" target="_blank">Download Resume ↓</a>
     </div>
 
-    <div class="contact-links">
+    <div class="contact-right">
+      <div class="contact-links">
       <a class="contact-link" href="mailto:rizsad92@gmail.com">
         <span class="contact-icon">✉️</span>
         <div>
@@ -1310,15 +1314,16 @@
           <span class="contact-val">rizwan-s-7594b4b2</span>
         </div>
       </a>
-      <a class="contact-link" href="https://github.com/ridz2516" target="_blank">
+      <a class="contact-link" href="https://github.com/rizwansadiq-dev" target="_blank">
         <span class="contact-icon">🐙</span>
         <div>
           <span class="contact-label">GitHub</span>
-          <span class="contact-val">github.com/ridz2516</span>
+          <span class="contact-val">github.com/rizwansadiq-dev</span>
         </div>
       </a>
-    </div>
-  </div>
+      </div><!-- end contact-links -->
+    </div><!-- end contact-right -->
+  </div><!-- end contact-grid -->
 </section>
 
 <!-- ── FOOTER ── -->
