@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rizwan Sadiq – Senior Unity Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #080c10;
+      --bg2:       #0d1117;
+      --bg3:       #111820;
+      --card:      #141c26;
+      --border:    #1e2d3d;
+      --accent:    #00e5ff;
+      --accent2:   #00ff9d;
+      --accent3:   #ff6b35;
+      --text:      #c9d8e8;
+      --text-dim:  #5a7a96;
+      --white:     #f0f8ff;
+      --glow:      0 0 20px rgba(0,229,255,0.3);
+      --glow2:     0 0 30px rgba(0,255,157,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    section, nav, footer { position: relative; z-index: 1; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(8,12,16,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent) !important;
+      padding: 6px 16px;
+      border-radius: 4px;
+      transition: background 0.2s, box-shadow 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: rgba(0,229,255,0.1) !important;
+      box-shadow: var(--glow) !important;
+      color: var(--accent) !important;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 8% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1100px;
+      width: 100%;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--accent2);
+      border: 1px solid var(--accent2);
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--text);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-bio strong { color: var(--accent2); }
+
+    .stats-row {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: left;
+    }
+
+    .stat-num {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      background: #33eaff;
+      box-shadow: var(--glow);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .hero-avatar {
+      position: relative;
+    }
+
+    .avatar-frame {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      padding: 4px;
+      box-shadow: var(--glow), inset 0 0 20px rgba(0,229,255,0.1);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: var(--glow), inset 0 0 20px rgba(0,229,255,0.1); }
+      50% { box-shadow: 0 0 40px rgba(0,229,255,0.5), inset 0 0 30px rgba(0,229,255,0.2); }
+    }
+
+    .avatar-frame img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .avatar-badge {
+      position: absolute;
+      bottom: 10px; right: 10px;
+      background: var(--accent2);
+      color: var(--bg);
+      font-family: 'Orbitron', monospace;
+      font-size: 0.55rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 2px;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 90px 8%; }
+
+    .section-label {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 40px; height: 2px;
+      background: var(--accent);
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--bg2); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .skill-card-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: rgba(0,229,255,0.06);
+      border: 1px solid rgba(0,229,255,0.2);
+      color: var(--text);
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+    }
+
+    .tag:hover {
+      background: rgba(0,229,255,0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .tag.green {
+      background: rgba(0,255,157,0.06);
+      border-color: rgba(0,255,157,0.2);
+    }
+
+    .tag.green:hover {
+      background: rgba(0,255,157,0.15);
+      border-color: var(--accent2);
+      color: var(--accent2);
+    }
+
+    .tag.orange {
+      background: rgba(255,107,53,0.06);
+      border-color: rgba(255,107,53,0.2);
+    }
+
+    .tag.orange:hover {
+      background: rgba(255,107,53,0.15);
+      border-color: var(--accent3);
+      color: var(--accent3);
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.4rem;
+      top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .exp-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.8rem;
+      transition: border-color 0.3s;
+    }
+
+    .exp-card:hover { border-color: var(--accent); }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-company {
+      font-family: 'Orbitron', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .exp-period {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      background: rgba(0,229,255,0.08);
+      border: 1px solid rgba(0,229,255,0.2);
+      padding: 3px 10px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    .exp-role {
+      font-size: 0.85rem;
+      color: var(--accent2);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-location {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .exp-bullets li {
+      font-size: 0.88rem;
+      color: var(--text);
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .exp-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+    }
+
+    .exp-bullets li strong { color: var(--white); }
+
+    .exp-links {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .exp-link {
+      font-size: 0.72rem;
+      color: var(--accent2);
+      border: 1px solid rgba(0,255,157,0.25);
+      padding: 3px 10px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .exp-link:hover {
+      background: rgba(0,255,157,0.1);
+      border-color: var(--accent2);
+    }
+
+    /* ── PORTFOLIO ── */
+    #portfolio { background: var(--bg2); }
+
+    .portfolio-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-top: -2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .portfolio-category {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--accent2);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .portfolio-category:first-of-type { margin-top: 0; }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .game-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .game-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4), var(--glow);
+    }
+
+    .game-icon {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .game-name {
+      padding: 10px 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      background: var(--card);
+    }
+
+    .game-card.featured {
+      border-color: var(--accent3);
+    }
+
+    .game-card.featured:hover {
+      border-color: var(--accent3);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 20px rgba(255,107,53,0.3);
+    }
+
+    .featured-badge {
+      background: var(--accent3);
+      color: var(--bg);
+      font-family: 'Orbitron', monospace;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-align: center;
+      padding: 3px;
+    }
+
+    .more-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(0,229,255,0.3);
+      padding-bottom: 2px;
+      transition: all 0.2s;
+    }
+
+    .more-link:hover {
+      border-color: var(--accent);
+      gap: 10px;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+      max-width: 800px;
+    }
+
+    .contact-intro {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      padding: 0.8rem 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: all 0.25s;
+      font-size: 0.88rem;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .contact-icon {
+      font-size: 1.1rem;
+      width: 28px;
+      text-align: center;
+    }
+
+    .contact-label {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      display: block;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .contact-val { font-weight: 600; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 2rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-text {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    /* ── HAMBURGER MOBILE ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: var(--bg2);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 1.5rem 5%;
+        gap: 1.2rem;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-avatar { justify-self: center; }
+      .stats-row { justify-content: center; }
+      .hero-btns { justify-content: center; }
+      h2::after { left: 50%; transform: translateX(-50%); }
+      h2 { text-align: center; }
+      .section-label { text-align: center; }
+
+      .contact-grid { grid-template-columns: 1fr; }
+
+      .games-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="#hero">RS.</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://drive.google.com/file/d/1hGMyT8BD6jvs2201RocqbvJe720Jr_85/view?usp=share_link" target="_blank" class="nav-cta">Resume ↓</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag">Available for Remote Work</div>
+      <h1>Rizwan<br>Sadiq</h1>
+      <div class="hero-title">Senior Unity Developer</div>
+      <p class="hero-bio">
+        A passionate game developer on a mission to create top-tier games — boasting <strong>9+ years</strong> of experience crafting hits across mobile platforms worldwide.
+        Architect of <strong>Web Master</strong>, a globally charted game with over <strong>10 million downloads</strong>.
+      </p>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-num">9+</div>
+          <div class="stat-label">Years Exp.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">70+</div>
+          <div class="stat-label">Games Built</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">10M+</div>
+          <div class="stat-label">Downloads</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">#100</div>
+          <div class="stat-label">Global Chart</div>
+        </div>
+      </div>
+      <div class="hero-btns">
+        <a class="btn btn-primary" href="#portfolio">View Games</a>
+        <a class="btn btn-outline" href="https://drive.google.com/file/d/1hGMyT8BD6jvs2201RocqbvJe720Jr_85/view?usp=share_link" target="_blank">Download Resume</a>
+      </div>
+    </div>
+
+    <div class="hero-avatar">
+      <div class="avatar-frame">
+        <img src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/profile-pic-7-1.png" alt="Rizwan Sadiq" />
+      </div>
+      <div class="avatar-badge">UNITY EXPERT</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="section-label">What I Work With</div>
+  <h2>Skills & Technologies</h2>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-title">⚙ Languages</div>
+      <div class="tags">
+        <span class="tag">C#</span>
+        <span class="tag">Java</span>
+        <span class="tag">C++</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-title">🎮 Core Technologies</div>
+      <div class="tags">
+        <span class="tag green">Unity 3D</span>
+        <span class="tag green">Blender</span>
+        <span class="tag green">Photoshop</span>
+        <span class="tag green">Figma</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-title">🕹 Game Dev Skills</div>
+      <div class="tags">
+        <span class="tag">Unity Development</span>
+        <span class="tag">Photon Multiplayer</span>
+        <span class="tag">AR/VR (Vuforia)</span>
+        <span class="tag">Firebase</span>
+        <span class="tag">Unity ECS / Jobs</span>
+        <span class="tag">PlayFab</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-title">🧱 Architecture & Patterns</div>
+      <div class="tags">
+        <span class="tag orange">Zenject</span>
+        <span class="tag orange">VContainer</span>
+        <span class="tag orange">Design Patterns</span>
+        <span class="tag orange">Modular Code</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-title">🧪 Testing</div>
+      <div class="tags">
+        <span class="tag">TDD</span>
+        <span class="tag">NUnit</span>
+        <span class="tag">Mock Testing</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-title">🛠 Tools & Workflow</div>
+      <div class="tags">
+        <span class="tag green">Bitbucket</span>
+        <span class="tag green">Trello</span>
+        <span class="tag green">Unity Profiler</span>
+        <span class="tag green">Team Leadership</span>
+        <span class="tag green">Level Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="section-label">Career History</div>
+  <h2>Experience</h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-company">Kob Games Studio</div>
+          <div class="exp-period">Nov 2020 – Present</div>
+        </div>
+        <div class="exp-role">Game Developer</div>
+        <div class="exp-location">🌐 Global · Remote</div>
+        <ul class="exp-bullets">
+          <li>Crafted <strong>70+ Hyper/Hybrid casual games</strong> across Puzzle, Action and Adventure genres using Unity3D and Blender.</li>
+          <li>Architected and shipped hit games with <strong>millions of downloads</strong>, including Live-ops titles.</li>
+          <li>Developed <strong>Web Master</strong> — a globally charted game ranked <strong>Top #100 on the Play Store</strong> worldwide with over <strong>10 million downloads</strong>.</li>
+          <li>Managed backlogs, stories and tasks in close collaboration with designers using Trello.</li>
+        </ul>
+        <div class="exp-links">
+          <a class="exp-link" href="https://play.google.com/store/apps/details?id=com.games.webmaster" target="_blank">▶ Web Master</a>
+          <a class="exp-link" href="https://play.google.com/store/apps/details?id=com.games.partymatch" target="_blank">▶ Party Match</a>
+          <a class="exp-link" href="https://play.google.com/store/apps/details?id=com.games.bouncingrainbow" target="_blank">▶ Bouncing Rainbow</a>
+          <a class="exp-link" href="https://play.google.com/store/apps/details?id=com.games.monstersisland" target="_blank">▶ Monster Island</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:var(--accent2);box-shadow:0 0 10px var(--accent2);"></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-company">Blame Game Studios</div>
+          <div class="exp-period">Sep 2019 – Nov 2020</div>
+        </div>
+        <div class="exp-role">Lead Unity Developer</div>
+        <div class="exp-location">📍 Karachi, Pakistan</div>
+        <ul class="exp-bullets">
+          <li><strong>Led</strong> the architecture and development of a new multiplayer board game using Unity3D and Photon.</li>
+          <li>Built secure cloud-based storage and player login systems with <strong>PlayFab</strong>.</li>
+          <li>Developed an <strong>AR photoshoot experience</strong> for PSL Cricket using AR Foundation.</li>
+          <li>Created a 2D interactive game for <strong>Domino's Pizza</strong> in Unity3D.</li>
+          <li>Conducted analytics monitoring using <strong>Firebase</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:var(--accent3);box-shadow:0 0 10px var(--accent3);"></div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-company">Game Storm Studios</div>
+          <div class="exp-period">Jun 2016 – Sep 2019</div>
+        </div>
+        <div class="exp-role">Unity Developer</div>
+        <div class="exp-location">📍 Pakistan</div>
+        <ul class="exp-bullets">
+          <li>Specialized in crafting games across <strong>action, adventure, simulation and puzzle</strong> genres.</li>
+          <li>Built a versatile skill set across multiple Unity 3D project types over <strong>3 years</strong>.</li>
+          <li>Collaborated with cross-functional teams to deliver diverse and engaging gaming experiences.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PORTFOLIO ── -->
+<section id="portfolio">
+  <div class="section-label">Released Titles</div>
+  <h2>Portfolio</h2>
+  <p class="portfolio-subtitle">Games shipped to the Play Store — click any to view on Google Play.</p>
+
+  <div class="portfolio-category">⚡ Action Games</div>
+  <div class="games-grid">
+    <a class="game-card featured" href="https://play.google.com/store/apps/details?id=com.games.webmaster&hl=en&gl=US" target="_blank">
+      <div class="featured-badge">★ TOP #100 GLOBAL · 10M+ DOWNLOADS</div>
+      <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/game-iconx512.png" alt="Web Master" />
+      <div class="game-name">Web Master: Stickman Superhero</div>
+    </a>
+    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.breakthewall" target="_blank">
+      <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-7.png" alt="Break The Wall" />
+      <div class="game-name">Break The Wall</div>
+    </a>
+    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.partymatch&hl=en&gl=US" target="_blank">
+      <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/partymatch_1024x1024_icon.png" alt="Party Match" />
+      <div class="game-name">Party Match: Do Not Fall</div>
+    </a>
+  </div>
+
+  <div class="portfolio-category">🧩 Puzzle Games</div>
+  <div class="games-grid">
+    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.minerescue" target="_blank">
+      <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-3.png" alt="Mine Rescue" />
+      <div class="game-name">Mine Rescue</div>
+    </a>
+    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.savethedog" target="_blank">
+      <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-4.png" alt="Save The Dog" />
+      <div class="game-name">Save The Dog</div>
+    </a>
+    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.mergeandcrash" target="_blank">
+      <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-5.png" alt="Merge And Shoot" />
+      <div class="game-name">Merge And Shoot</div>
+    </a>
+    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.fillitpuzzle" target="_blank">
+      <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-6.png" alt="Fill It Puzzle" />
+      <div class="game-name">Fill It Puzzle</div>
+    </a>
+  </div>
+
+  <div class="portfolio-category">🗺 Adventure Games</div>
+  <div class="games-grid">
+    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.monstersisland&hl=en&gl=US" target="_blank">
+      <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/game-iconx512-1.png" alt="Monster Island" />
+      <div class="game-name">Monster Island</div>
+    </a>
+    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.bouncingrainbow&hl=en&gl=US" target="_blank">
+      <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed.png" alt="Bouncing Rainbow" />
+      <div class="game-name">Bouncing Rainbow</div>
+    </a>
+    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.mergebattle" target="_blank">
+      <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed.jpg" alt="Merge Battle" />
+      <div class="game-name">Merge Battle</div>
+    </a>
+    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.whoiskiller" target="_blank">
+      <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-8.png" alt="Who Is Killer" />
+      <div class="game-name">Who Is Killer</div>
+    </a>
+  </div>
+
+  <a class="more-link" href="https://drive.google.com/drive/folders/1XmQywm5mBakTZBRSdg3Rgqr3EuLwbmxY?usp=drive_link" target="_blank">
+    View All Hyper/Hybrid Games →
+  </a>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2>Contact</h2>
+
+  <div class="contact-grid">
+    <div>
+      <p class="contact-intro">
+        Available for remote game development roles — mobile studios, international teams, and freelance projects welcome. Let's build something great.
+      </p>
+      <a class="btn btn-primary" href="https://drive.google.com/file/d/1hGMyT8BD6jvs2201RocqbvJe720Jr_85/view?usp=share_link" target="_blank">Download Resume ↓</a>
+    </div>
+
+    <div class="contact-links">
+      <a class="contact-link" href="https://www.linkedin.com/in/rizwan-s-7594b4b2/" target="_blank">
+        <span class="contact-icon">💼</span>
+        <div>
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-val">rizwan-s-7594b4b2</span>
+        </div>
+      </a>
+      <a class="contact-link" href="https://github.com/ridz2516" target="_blank">
+        <span class="contact-icon">🐙</span>
+        <div>
+          <span class="contact-label">GitHub</span>
+          <span class="contact-val">github.com/ridz2516</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand">RIZWAN SADIQ</div>
+  <div class="footer-text">Senior Unity Developer · 9+ Years · 70+ Games · 10M+ Downloads</div>
+</footer>
+
+<script>
+  // Close mobile nav on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.skill-card, .exp-card, .game-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
