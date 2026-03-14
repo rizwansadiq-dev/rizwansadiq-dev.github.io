@@ -256,6 +256,13 @@
 
     .hero-avatar {
       position: relative;
+      width: 260px;
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin: 60px;
     }
 
     .avatar-frame {
@@ -291,6 +298,103 @@
       padding: 4px 8px;
       border-radius: 2px;
       letter-spacing: 0.1em;
+      z-index: 2;
+    }
+
+    /* Rotating outer ring */
+    .avatar-ring-outer {
+      position: absolute;
+      width: 290px; height: 290px;
+      border-radius: 50%;
+      border: 1px dashed rgba(0,229,255,0.25);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: spinSlow 18s linear infinite;
+      pointer-events: none;
+    }
+
+    .avatar-ring-mid {
+      position: absolute;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,255,157,0.12);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: spinSlow 28s linear infinite reverse;
+      pointer-events: none;
+    }
+
+    @keyframes spinSlow {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to   { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Floating stat chips */
+    .avatar-chip {
+      position: absolute;
+      background: rgba(13,17,23,0.92);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+      backdrop-filter: blur(8px);
+      animation: floatChip 3s ease-in-out infinite;
+      letter-spacing: 0.03em;
+    }
+
+    .chip-1 {
+      top: -10px; left: -30px;
+      border-color: rgba(0,229,255,0.3);
+      color: var(--accent);
+      animation-delay: 0s;
+    }
+
+    .chip-2 {
+      top: 40px; right: -50px;
+      border-color: rgba(255,107,53,0.3);
+      color: var(--accent3);
+      animation-delay: 0.8s;
+    }
+
+    .chip-3 {
+      bottom: 40px; right: -45px;
+      border-color: rgba(0,255,157,0.3);
+      color: var(--accent2);
+      animation-delay: 1.6s;
+    }
+
+    .chip-4 {
+      bottom: -10px; left: -20px;
+      border-color: rgba(0,229,255,0.3);
+      color: var(--accent);
+      animation-delay: 2.4s;
+    }
+
+    @keyframes floatChip {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-6px); }
+    }
+
+    /* Corner bracket decorations */
+    .avatar-corner {
+      position: absolute;
+      width: 20px; height: 20px;
+      pointer-events: none;
+    }
+
+    .corner-tl {
+      top: -30px; left: -60px;
+      border-top: 2px solid var(--accent);
+      border-left: 2px solid var(--accent);
+    }
+
+    .corner-br {
+      bottom: -30px; right: -55px;
+      border-bottom: 2px solid var(--accent2);
+      border-right: 2px solid var(--accent2);
     }
 
     /* ── SECTION SHARED ── */
@@ -827,10 +931,26 @@
     </div>
 
     <div class="hero-avatar">
+
+      <!-- Rotating outer ring -->
+      <div class="avatar-ring-outer"></div>
+      <!-- Dashed middle ring -->
+      <div class="avatar-ring-mid"></div>
+
       <div class="avatar-frame">
         <img src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/profile-pic-7-1.png" alt="Rizwan Sadiq" />
       </div>
       <div class="avatar-badge">UNITY EXPERT</div>
+
+      <!-- Floating stat chips -->
+      <div class="avatar-chip chip-1">🎮 70+ Games</div>
+      <div class="avatar-chip chip-2">⭐ Top #100 Global</div>
+      <div class="avatar-chip chip-3">📥 50M+ Downloads</div>
+      <div class="avatar-chip chip-4">🕹 9+ Years</div>
+
+      <!-- Corner decorations -->
+      <div class="avatar-corner corner-tl"></div>
+      <div class="avatar-corner corner-br"></div>
     </div>
   </div>
 </section>
