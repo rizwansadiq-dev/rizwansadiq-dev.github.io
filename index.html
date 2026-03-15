@@ -430,29 +430,107 @@
     /* ── VIDEO REEL ── */
     #reel { background: var(--bg3); }
 
-    .reel-sub {
-      font-size: 0.88rem;
-      color: var(--text-dim);
-      margin-top: -2rem;
-      margin-bottom: 2rem;
+    .reel-layout {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1000px;
     }
 
-    .video-wrapper {
+    /* Left description */
+    .reel-tag {
+      display: inline-block;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      color: var(--accent2);
+      border: 1px solid var(--accent2);
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .reel-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+
+    .reel-body {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+
+    .reel-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .reel-points li {
+      font-size: 0.85rem;
+      color: var(--text);
+      padding-left: 0.2rem;
+    }
+
+    .reel-points li strong { color: var(--white); }
+
+    /* iPhone mockup */
+    .reel-phone-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phone-mockup {
       position: relative;
-      width: 100%;
-      max-width: 900px;
-      aspect-ratio: 16 / 9;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,229,255,0.1);
+      width: 240px;
     }
 
-    .video-wrapper iframe {
+    .phone-frame {
+      width: 100%;
+      height: auto;
+      display: block;
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+    }
+
+    .phone-screen {
       position: absolute;
-      inset: 0;
+      /* tuned to sit inside the phone bezel */
+      top: 10%;
+      left: 8%;
+      width: 84%;
+      height: 80%;
+      z-index: 1;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .phone-screen iframe {
       width: 100%;
       height: 100%;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .reel-layout {
+        grid-template-columns: 1fr;
+      }
+      .reel-phone-wrap { order: -1; }
+      .phone-mockup { width: 180px; margin: 0 auto; }
     }
 
     /* ── SKILLS ── */
@@ -1085,15 +1163,41 @@
 <section id="reel">
   <div class="section-label">Gameplay Showcase</div>
   <h2>Game Reel</h2>
-  <p class="reel-sub">A collection of titles I've built — 9 years of mobile game development in action.</p>
-  <div class="video-wrapper">
-    <iframe
-      src="https://www.youtube.com/embed/LS5GOckyeOQ?rel=0&modestbranding=1&color=white"
-      title="Rizwan Sadiq – Game Development Reel"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
+  <div class="reel-layout">
+
+    <!-- Left: Description -->
+    <div class="reel-desc">
+      <div class="reel-tag">🎬 Highlights Reel</div>
+      <h3 class="reel-title">9 Years of Mobile Game Development</h3>
+      <p class="reel-body">
+        A curated showcase of some of the <strong>Hybrid & Hyper Casual games</strong> I've built — spanning puzzle, action, adventure and logic-based genres.
+      </p>
+      <ul class="reel-points">
+        <li>⚡ Built with <strong>Unity3D</strong></li>
+        <li>🧩 Multiple genres — Puzzle, Action, Adventure, Logic</li>
+        <li>📱 Shipped on iOS & Android globally</li>
+        <li>🏆 Including Top #100 worldwide hit <strong>Web Master</strong></li>
+        <li>📥 Combined <strong>50M+ downloads</strong> across titles</li>
+      </ul>
+      <a class="btn btn-outline" href="https://play.google.com/store/apps/developer?id=Kob+Games" target="_blank">View All Games ↗</a>
+    </div>
+
+    <!-- Right: iPhone mockup with video -->
+    <div class="reel-phone-wrap">
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <iframe
+            src="https://www.youtube.com/embed/LS5GOckyeOQ?rel=0&modestbranding=1&color=white"
+            title="Rizwan Sadiq Game Reel"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <img class="phone-frame" src="data:image/png;base64,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" alt="iPhone frame" />
+      </div>
+    </div>
+
   </div>
 </section>
 
