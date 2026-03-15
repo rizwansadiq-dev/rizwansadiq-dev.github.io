@@ -493,7 +493,8 @@
 
     .phone-mockup {
       position: relative;
-      width: 240px;
+      width: 320px;
+      flex-shrink: 0;
     }
 
     .phone-frame {
@@ -508,29 +509,31 @@
 
     .phone-screen {
       position: absolute;
-      /* tuned to sit inside the phone bezel */
-      top: 10%;
-      left: 8%;
-      width: 84%;
-      height: 80%;
+      top: 10.5%;
+      left: 9%;
+      width: 82%;
+      height: 79%;
       z-index: 1;
-      border-radius: 6px;
+      border-radius: 10px;
       overflow: hidden;
       background: #000;
+      clip-path: inset(0 0 0 0 round 10px);
     }
 
     .phone-screen iframe {
-      width: 100%;
+      width: 180%;
       height: 100%;
+      margin-left: -40%;
       border: none;
+      pointer-events: all;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .reel-layout {
         grid-template-columns: 1fr;
       }
       .reel-phone-wrap { order: -1; }
-      .phone-mockup { width: 180px; margin: 0 auto; }
+      .phone-mockup { width: 220px; margin: 0 auto; }
     }
 
     /* ── SKILLS ── */
