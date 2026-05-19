@@ -105,7 +105,7 @@
     .avatar-ring-outer { position: absolute; width: 290px; height: 290px; border-radius: 50%; border: 1px dashed rgba(0,229,255,0.25); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: spinSlow 18s linear infinite; pointer-events: none; }
     .avatar-ring-mid { position: absolute; width: 340px; height: 340px; border-radius: 50%; border: 1px solid rgba(0,255,157,0.12); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: spinSlow 28s linear infinite reverse; pointer-events: none; }
     @keyframes spinSlow { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
-    .avatar-frame { width: 220px; height: 220px; border-radius: 50%; border: 2px solid var(--accent); padding: 4px; box-shadow: var(--glow), inset 0 0 20px rgba(0,229,255,0.1); animation: pulse 3s ease-in-out infinite; }
+    .avatar-frame { width: 260px; height: 260px; border-radius: 50%; border: 2px solid var(--accent); padding: 4px; box-shadow: var(--glow), inset 0 0 20px rgba(0,229,255,0.1); animation: pulse 3s ease-in-out infinite; }
     @keyframes pulse { 0%,100% { box-shadow: var(--glow), inset 0 0 20px rgba(0,229,255,0.1); } 50% { box-shadow: 0 0 40px rgba(0,229,255,0.5), inset 0 0 30px rgba(0,229,255,0.2); } }
     .avatar-frame img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
     .avatar-badge { position: absolute; bottom: 10px; right: 10px; background: var(--accent2); color: var(--bg); font-family: 'Orbitron', monospace; font-size: 0.55rem; font-weight: 700; padding: 4px 8px; border-radius: 2px; letter-spacing: 0.1em; z-index: 2; }
@@ -181,6 +181,15 @@
     .game-card.featured { border-color: var(--accent3); }
     .game-card.featured:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 20px rgba(255,107,53,0.3); }
     .featured-badge { background: var(--accent3); color: var(--bg); font-family: 'Orbitron', monospace; font-size: 0.5rem; font-weight: 700; letter-spacing: 0.1em; text-align: center; padding: 3px; }
+    .game-downloads {
+      font-size: 0.68rem;
+      color: var(--accent2);
+      text-align: center;
+      padding: 0 12px 8px;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+
     .more-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 1.5rem; color: var(--accent); text-decoration: none; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(0,229,255,0.3); padding-bottom: 2px; transition: all 0.2s; }
     .more-link:hover { gap: 10px; border-color: var(--accent); }
 
@@ -276,11 +285,11 @@
       <h1>Rizwan<br>Sadiq</h1>
       <div class="hero-title">Senior Unity Developer</div>
       <p class="hero-bio">
-        A passionate game developer on a mission to create top-tier games — boasting <strong>9+ years</strong> of experience crafting hits across mobile platforms worldwide.
+        A passionate game developer on a mission to create top-tier games — boasting <strong>10+ years</strong> of experience crafting hits across mobile platforms worldwide.
         Architect of <strong>Web Master</strong>, a globally charted game with over <strong>50 million downloads</strong>.
       </p>
       <div class="stats-row">
-        <div class="stat"><div class="stat-num">9+</div><div class="stat-label">Years Exp.</div></div>
+        <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Years Exp.</div></div>
         <div class="stat"><div class="stat-num">70+</div><div class="stat-label">Games Built</div></div>
         <div class="stat"><div class="stat-num">50M+</div><div class="stat-label">Downloads</div></div>
         <div class="stat"><div class="stat-num">#100</div><div class="stat-label">Global Chart</div></div>
@@ -300,7 +309,7 @@
       <div class="avatar-chip chip-1">🎮 70+ Games</div>
       <div class="avatar-chip chip-2">⭐ Top #100 Global</div>
       <div class="avatar-chip chip-3">📥 50M+ Downloads</div>
-      <div class="avatar-chip chip-4">🕹 9+ Years</div>
+      <div class="avatar-chip chip-4">🕹 10+ Years</div>
       <div class="avatar-corner corner-tl"></div>
       <div class="avatar-corner corner-br"></div>
     </div>
@@ -490,22 +499,27 @@
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.breakthewall" target="_blank">
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-7.png" alt="Break The Wall" />
       <div class="game-name">Break The Wall</div>
+      <div class="game-downloads">📥 1M+ Downloads</div>
     </a>
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.partymatch&hl=en&gl=US" target="_blank">
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/partymatch_1024x1024_icon.png" alt="Party Match" />
       <div class="game-name">Party Match: Do Not Fall</div>
+      <div class="game-downloads">📥 1M+ Downloads</div>
     </a>
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.kiwert.rivalrealms" target="_blank">
       <img class="game-icon" src="https://play-lh.googleusercontent.com/6vn9sw9Op0gsc6pWApXrXemm-XvVwtNnY--v8Yioz0kDH_EuoLsCMpxcj9xg35TlqxO-psOOlOs87q0ri33m=w240-h480" alt="Rival Realms" />
       <div class="game-name">Rival Realms</div>
+      <div class="game-downloads">📥 100+ Downloads</div>
     </a>
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.kiwert.mineadventure" target="_blank">
       <img class="game-icon" src="https://play-lh.googleusercontent.com/xzWJs9wQcMlpQzABaE_QQH_TvmBj6apLPPFD_UwazixOQuk9zfTvpQz6wiGLH5NwKSGGYo24xD2_-rAumqDVAw=w240-h480" alt="Mine Adventure" />
       <div class="game-name">Mine Adventure: Survival RPG</div>
+      <div class="game-downloads">📥 5K+ Downloads</div>
     </a>
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.kgs.ratkiller" target="_blank">
       <img class="game-icon" src="https://play-lh.googleusercontent.com/welqmFD6CwgUw7A4MBc6VRUFeQQ3_irel9eia15Xm8n-wGvAwa6CyrXZyut_3zPdrYs=w240-h480" alt="Rat Killer Robot Invasion" />
       <div class="game-name">Rat Killer Robot Invasion</div>
+      <div class="game-downloads">📥 100K+ Downloads</div>
     </a>
   </div>
 
@@ -514,22 +528,27 @@
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.minerescue" target="_blank">
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-3.png" alt="Mine Rescue" />
       <div class="game-name">Mine Rescue</div>
+      <div class="game-downloads">📥 500K+ Downloads</div>
     </a>
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.savethedog" target="_blank">
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-4.png" alt="Save The Dog" />
       <div class="game-name">Save The Dog</div>
+      <div class="game-downloads">📥 1M+ Downloads</div>
     </a>
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.mergeandcrash" target="_blank">
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-5.png" alt="Merge And Shoot" />
       <div class="game-name">Merge And Shoot</div>
+      <div class="game-downloads">📥 500K+ Downloads</div>
     </a>
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.fillitpuzzle" target="_blank">
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-6.png" alt="Fill It Puzzle" />
       <div class="game-name">Fill It Puzzle</div>
+      <div class="game-downloads">📥 100K+ Downloads</div>
     </a>
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.kgs.cuttingfactory&hl=en" target="_blank">
       <img class="game-icon" src="https://play-lh.googleusercontent.com/9NQw-Xz31oTyNhB-vyXySMXN98cBqhQVzI74aaLv_RhQ6sXzRPpFjaOO7Pn9CGnhnw=w240-h480" alt="Cutting Factory" />
       <div class="game-name">Cutting Factory: Idle Money</div>
+      <div class="game-downloads">📥 1K+ Downloads</div>
     </a>
   </div>
 
@@ -538,18 +557,22 @@
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.monstersisland&hl=en&gl=US" target="_blank">
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/game-iconx512-1.png" alt="Monster Island" />
       <div class="game-name">Monster Island</div>
+      <div class="game-downloads">📥 1M+ Downloads</div>
     </a>
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.bouncingrainbow&hl=en&gl=US" target="_blank">
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed.png" alt="Bouncing Rainbow" />
       <div class="game-name">Bouncing Rainbow</div>
+      <div class="game-downloads">📥 1M+ Downloads</div>
     </a>
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.mergebattle" target="_blank">
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed.jpg" alt="Merge Battle" />
       <div class="game-name">Merge Battle</div>
+      <div class="game-downloads">📥 500K+ Downloads</div>
     </a>
     <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.whoiskiller" target="_blank">
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-8.png" alt="Who Is Killer" />
       <div class="game-name">Who Is Killer</div>
+      <div class="game-downloads">📥 100K+ Downloads</div>
     </a>
   </div>
   <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem;">
@@ -589,7 +612,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">RIZWAN SADIQ</div>
-  <div class="footer-text">Senior Unity Developer · 9+ Years · 70+ Games · 50M+ Downloads</div>
+  <div class="footer-text">Senior Unity Developer · 10+ Years · 70+ Games · 50M+ Downloads</div>
 </footer>
 
 <script>
