@@ -149,6 +149,7 @@
 
     /* EXPERIENCE */
     #experience { background: var(--bg); }
+    #education { background: var(--bg2); padding-top: 70px; padding-bottom: 70px; }
     .timeline { position: relative; padding-left: 2rem; }
     .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent); }
     .timeline-item { position: relative; margin-bottom: 3rem; padding-left: 2rem; }
@@ -189,6 +190,58 @@
       letter-spacing: 0.04em;
       font-weight: 600;
     }
+
+
+    /* GAME DETAIL VIEW */
+    body.gd-lock { overflow: hidden; }
+    .gd { display: none; position: fixed; inset: 0; z-index: 10000; background: var(--bg); overflow-y: auto; }
+    .gd.open { display: block; animation: gdIn .35s ease both; }
+    @keyframes gdIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .gd::before { content: ''; position: fixed; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 40% at 80% 0%, rgba(0,229,255,0.08), transparent 70%), radial-gradient(ellipse 50% 40% at 0% 100%, rgba(0,255,157,0.05), transparent 70%); }
+    .gd-inner { position: relative; max-width: 1500px; margin: 0 auto; padding: 36px 4% 90px; }
+    .gd-back { display: inline-flex; align-items: center; gap: 8px; background: none; border: none; padding: 0; color: var(--dim); font-family: 'Exo 2', sans-serif; font-size: 0.85rem; font-weight: 600; cursor: pointer; margin-bottom: 2rem; transition: color .2s; }
+    .gd-back:hover { color: var(--white); }
+    .gd-header { display: flex; align-items: center; gap: 1.3rem; margin-bottom: 1.4rem; }
+    .gd-icon { width: 84px; height: 84px; border-radius: 20px; object-fit: cover; border: 1px solid var(--border); flex-shrink: 0; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+    .gd-genre { font-family: 'Orbitron', monospace; font-size: 0.62rem; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
+    .gd-title { font-family: 'Orbitron', monospace; font-size: clamp(1.4rem, 3.4vw, 2.2rem); font-weight: 900; color: var(--white); line-height: 1.15; }
+    .gd-title::after { display: none; }
+    .gd-stats { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-bottom: 2.4rem; }
+    .gd-stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 10px 18px; min-width: 110px; }
+    .gd-stat b { display: block; font-family: 'Orbitron', monospace; font-size: 1.05rem; color: var(--accent2); line-height: 1.3; }
+    .gd-stat span { font-size: 0.68rem; color: var(--dim); letter-spacing: 0.08em; text-transform: uppercase; }
+    .gd-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 3rem; align-items: start; }
+    .gd-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 34px 32px; }
+    .gd-card h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+    .gd-card p { font-size: 0.92rem; color: var(--dim); line-height: 1.85; margin-bottom: 1rem; }
+    .gd-card p:last-of-type { margin-bottom: 0; }
+    .gd-feat { margin-top: 1.6rem; padding-top: 1.6rem; border-top: 1px solid var(--border); }
+    .gd-feat h4 { font-size: 0.85rem; font-weight: 700; color: var(--white); margin-bottom: 0.9rem; }
+    .gd-feat ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .gd-feat li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; color: var(--dim); line-height: 1.6; }
+    .gd-feat li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: 8px; flex-shrink: 0; box-shadow: 0 0 8px var(--accent); }
+    .gd-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.5rem; }
+    .gd-store { display: inline-flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 22px; text-decoration: none; transition: border-color .2s, transform .15s, background .2s, box-shadow .2s; }
+    .gd-store:hover { border-color: var(--accent); transform: translateY(-2px); background: #182231; box-shadow: var(--glow); }
+    .gd-store svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .gd-store span { display: flex; flex-direction: column; line-height: 1.3; }
+    .gd-store small { font-size: 0.65rem; color: var(--dim); }
+    .gd-store strong { font-size: 0.95rem; color: var(--white); font-weight: 700; }
+    .gd-media { position: sticky; top: 24px; }
+    .gd-frame { border: 1px solid var(--border); border-radius: 20px; overflow: hidden; background: var(--card); aspect-ratio: 16/9; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,229,255,0.04); }
+    .gd-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .gd-poster { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.1rem; background: radial-gradient(circle at 50% 40%, #1a2838, var(--card) 70%); color: var(--dim); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; }
+    .gd-poster img { width: 30%; max-width: 150px; aspect-ratio: 1; border-radius: 26px; object-fit: cover; box-shadow: var(--glow), 0 12px 30px rgba(0,0,0,0.5); }
+    @media (max-width: 1100px) {
+      .gd-grid { grid-template-columns: minmax(0, 1fr); gap: 1.8rem; }
+      .gd-media { position: static; order: -1; }
+    }
+    @media (max-width: 860px) {
+      .gd-inner { padding: 28px 20px 70px; }
+      .gd-card { padding: 26px 22px; }
+      .gd-icon { width: 68px; height: 68px; border-radius: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .gd.open { animation: none; } }
 
     .more-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 1.5rem; color: var(--accent); text-decoration: none; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(0,229,255,0.3); padding-bottom: 2px; transition: all 0.2s; }
     .more-link:hover { gap: 10px; border-color: var(--accent); }
@@ -268,6 +321,7 @@
     <li><a href="#reel">Reel</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://drive.google.com/file/d/1hGMyT8BD6jvs2201RocqbvJe720Jr_85/view?usp=share_link" target="_blank" class="nav-cta">Resume ↓</a></li>
@@ -285,7 +339,7 @@
       <h1>Rizwan<br>Sadiq</h1>
       <div class="hero-title">Senior Unity Developer</div>
       <p class="hero-bio">
-        A passionate game developer on a mission to create top-tier games — boasting <strong>10+ years</strong> of experience crafting hits across mobile platforms worldwide.
+        A passionate game developer on a mission to create top-tier games — boasting <strong>10+ years</strong> shipping hyper-casual, hybrid-casual and puzzle games on iOS and Android, from rapid prototype through soft launch and LiveOps.
         Architect of <strong>Web Master</strong>, a globally charted game with over <strong>50 million downloads</strong>.
       </p>
       <div class="stats-row">
@@ -353,25 +407,31 @@
     <div class="skill-card">
       <div class="skill-card-title">⚙ Languages</div>
       <div class="tags">
-        <span class="tag">C#</span><span class="tag">Java</span><span class="tag">C++</span><span class="tag">Python</span>
+        <span class="tag">C# (Expert)</span><span class="tag">C++</span><span class="tag">Java</span><span class="tag">Python</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-card-title">🎮 Core Technologies</div>
       <div class="tags">
-        <span class="tag green">Unity 3D</span><span class="tag green">Blender</span><span class="tag green">Photoshop</span><span class="tag green">Figma</span>
+        <span class="tag green">Unity 3D</span><span class="tag green">Unity DOTS</span><span class="tag green">Addressables</span><span class="tag green">DOTween</span><span class="tag green">Blender</span><span class="tag green">Photoshop</span><span class="tag green">Figma</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-card-title">🕹 Game Dev Skills</div>
       <div class="tags">
-        <span class="tag">Unity Development</span><span class="tag">Photon Multiplayer</span><span class="tag">AR/VR (Vuforia)</span><span class="tag">Firebase</span><span class="tag">Unity ECS / Jobs</span><span class="tag">PlayFab</span>
+        <span class="tag">Photon PUN2</span><span class="tag">AR Foundation</span><span class="tag">AR/VR (Vuforia)</span><span class="tag">Firebase (Realtime DB, Remote Config, Analytics, Cloud Functions)</span><span class="tag">Unity ECS / Jobs</span><span class="tag">PlayFab</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-card-title">🧱 Architecture &amp; Patterns</div>
       <div class="tags">
-        <span class="tag orange">Zenject</span><span class="tag orange">VContainer</span><span class="tag orange">Design Patterns</span><span class="tag orange">Modular Code</span>
+        <span class="tag orange">SOLID</span><span class="tag orange">State Machine</span><span class="tag orange">MVC / MVP</span><span class="tag orange">Reactive Programming</span><span class="tag orange">Observer &amp; Pooling</span><span class="tag orange">VContainer</span><span class="tag orange">Zenject</span><span class="tag orange">Modular Code</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">💰 Monetization &amp; LiveOps</div>
+      <div class="tags">
+        <span class="tag orange">IAP</span><span class="tag orange">Ad Mediation</span><span class="tag orange">A/B Testing</span><span class="tag orange">Game Economy Design</span><span class="tag orange">Remote Config</span>
       </div>
     </div>
     <div class="skill-card">
@@ -383,7 +443,7 @@
     <div class="skill-card">
       <div class="skill-card-title">🛠 Tools &amp; Workflow</div>
       <div class="tags">
-        <span class="tag green">Bitbucket</span><span class="tag green">Trello</span><span class="tag green">Unity Profiler</span><span class="tag green">Team Leadership</span><span class="tag green">Level Design</span>
+        <span class="tag green">Git</span><span class="tag green">Unity Cloud Build</span><span class="tag green">Agile / Scrum</span><span class="tag green">Jira</span><span class="tag green">Bitbucket</span><span class="tag green">Trello</span><span class="tag green">Claude</span><span class="tag green">ChatGPT</span><span class="tag green">Unity Profiler</span><span class="tag green">Team Leadership</span><span class="tag green">Level Design</span>
       </div>
     </div>
   </div>
@@ -405,10 +465,13 @@
           </div>
           <div class="exp-period">Mar 2024 – Present</div>
         </div>
-        <div class="exp-role">Senior Game Developer</div>
+        <div class="exp-role">Senior Unity Developer</div>
         <div class="exp-location">🌐 Belgium · Remote</div>
         <ul class="exp-bullets">
-          <li>Leading game development projects end-to-end — from concept and game design to implementation and launch — ensuring <strong>high-quality, engaging gameplay</strong>.</li>
+          <li>Owning end-to-end technical delivery of <strong>20+ Unity titles</strong>, mentoring junior developers, and profiling/optimizing live builds for CPU, GPU and memory to protect code quality and limit post-launch disruption.</li>
+          <li><strong>Dragon Bound</strong> (v2 in development): the initial launch reached <strong>50 min D0 playtime, 45 min D1 playtime, 35% D0 retention and 15% D3 retention</strong>.</li>
+          <li>Contributed weapon system polish, seasonal Beast Pass unlocks, reward economy design and IAP integration to <strong>Rat Killer Robot Invasion</strong> — a live title with 100K+ Play Store downloads.</li>
+          <li>Built puzzle titles: <strong>Card Collect Association, Make It 10, Pack Jam 3D</strong> and <strong>Connect Dot Puzzle</strong> (100K+).</li>
           <li>Developing <strong>Hybrid Casual games</strong> across multiple genres including <strong>Puzzle</strong>, <strong>Action Hybrid</strong>, <strong>Logic-Based</strong>, and <strong>Build &amp; Inventory</strong> type games using Unity3D.</li>
           <li>Collaborating with cross-functional teams to <strong>optimize performance</strong> across all target devices.</li>
           <li><strong>Mentoring junior developers</strong> and conducting code reviews to maintain high standards of modular, scalable architecture.</li>
@@ -427,12 +490,14 @@
           <div class="exp-company">Kob Games Studio</div>
           <div class="exp-period">Nov 2020 – Mar 2024</div>
         </div>
-        <div class="exp-role">Game Developer</div>
+        <div class="exp-role">Senior Unity Developer</div>
         <div class="exp-location">🌐 Global · Remote</div>
         <ul class="exp-bullets">
           <li>Crafted <strong>70+ Hyper/Hybrid casual games</strong> across Puzzle, Action and Adventure genres using Unity3D and Blender.</li>
           <li>Architected and shipped hit games with <strong>millions of downloads</strong>, including Live-ops titles.</li>
           <li>Developed <strong>Web Master</strong> — ranked <strong>Top #100 on the Play Store</strong> worldwide with over <strong>50 million downloads</strong>.</li>
+          <li>Delivered seasonal content updates via <strong>Firebase Remote Config</strong> on a Live-Ops title surpassing <strong>1M+ downloads</strong>, driving retention improvements through <strong>A/B testing</strong>.</li>
+          <li>Managed App Store and Play Store deployment via the Unity build pipeline across multiple titles, and used <strong>Firebase Analytics</strong> to inform monetization and game economy decisions.</li>
           <li>Managed backlogs and tasks in close collaboration with designers using Trello.</li>
         </ul>
         <div class="exp-links">
@@ -448,13 +513,13 @@
       <div class="timeline-dot" style="background:var(--accent3);box-shadow:0 0 10px var(--accent3);"></div>
       <div class="exp-card">
         <div class="exp-header">
-          <div class="exp-company">Blame Game Studios</div>
+          <div class="exp-company">Blame Game Studio</div>
           <div class="exp-period">Sep 2019 – Nov 2020</div>
         </div>
         <div class="exp-role">Lead Unity Developer</div>
         <div class="exp-location">📍 Karachi, Pakistan</div>
         <ul class="exp-bullets">
-          <li><strong>Led</strong> the architecture and development of a new multiplayer board game using Unity3D and Photon.</li>
+          <li><strong>Led</strong> full development of <strong>Crickster</strong>, a real-time multiplayer board game built with <strong>Photon PUN2 &amp; Firebase</strong>, featuring optimized room management for low-latency gameplay.</li>
           <li>Built secure cloud-based storage and player login systems with <strong>PlayFab</strong>.</li>
           <li>Developed an <strong>AR photoshoot experience</strong> for PSL Cricket using AR Foundation.</li>
           <li>Created a 2D interactive game for <strong>Domino's Pizza</strong> in Unity3D.</li>
@@ -468,18 +533,31 @@
       <div class="exp-card">
         <div class="exp-header">
           <div class="exp-company">Game Storm Studios</div>
-          <div class="exp-period">Jun 2016 – Sep 2019</div>
+          <div class="exp-period">Jan 2016 – Sep 2019</div>
         </div>
         <div class="exp-role">Unity Developer</div>
         <div class="exp-location">📍 Pakistan</div>
         <ul class="exp-bullets">
           <li>Specialized in crafting games across <strong>action, adventure, simulation and puzzle</strong> genres over 3 years.</li>
-          <li>Built a versatile skill set across multiple Unity 3D project types.</li>
+          <li>Built core expertise in <strong>C#, OOP/SOLID design patterns, Git</strong> version control and cross-platform mobile deployment.</li>
           <li>Collaborated with cross-functional teams to deliver diverse and engaging gaming experiences.</li>
         </ul>
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Academic Background</div>
+  <h2>Education</h2>
+  <div class="exp-card">
+    <div class="exp-header">
+      <div class="exp-company">FAST – National University of Computer &amp; Emerging Sciences</div>
+      <div class="exp-period">2012 – 2016</div>
+    </div>
+    <div class="exp-role">BSc Computer Science</div>
   </div>
 </section>
 
@@ -491,22 +569,27 @@
 
   <div class="portfolio-category">⚡ Action Games</div>
   <div class="games-grid">
-    <a class="game-card featured" href="https://play.google.com/store/apps/details?id=com.games.webmaster&hl=en&gl=US" target="_blank">
+    <a class="game-card featured" data-game="webmaster" href="https://play.google.com/store/apps/details?id=com.games.webmaster&hl=en&gl=US" target="_blank">
       <div class="featured-badge">★ TOP #100 GLOBAL · 50M+ DOWNLOADS</div>
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/game-iconx512.png" alt="Web Master" />
       <div class="game-name">Web Master: Stickman Superhero</div>
     </a>
-    <a class="game-card featured" href="https://play.google.com/store/apps/details?id=com.kiwert.dragonbound" target="_blank">
+    <a class="game-card featured" data-game="dragonbound" href="https://play.google.com/store/apps/details?id=com.kiwert.dragonbound" target="_blank">
       <div class="featured-badge">35% RETENTION · 50 MIN D0 PLAYTIME</div>
       <img class="game-icon" src="images/dragonbound.png" alt="Dragon Bound" />
       <div class="game-name">Dragon Bound</div>
     </a>
-    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.breakthewall" target="_blank">
+    <a class="game-card" data-game="aquahero" href="https://play.google.com/store/apps/details?id=com.kiwert.aquahero&hl=en" target="_blank">
+      <img class="game-icon" src="images/aquahero.png" alt="Aqua Hero" />
+      <div class="game-name">Aqua Hero</div>
+      <div class="game-downloads">📥 5K+ Downloads</div>
+    </a>
+    <a class="game-card" data-game="breakthewall" href="https://play.google.com/store/apps/details?id=com.games.breakthewall" target="_blank">
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-7.png" alt="Break The Wall" />
       <div class="game-name">Break The Wall</div>
       <div class="game-downloads">📥 1M+ Downloads</div>
     </a>
-    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.partymatch&hl=en&gl=US" target="_blank">
+    <a class="game-card" data-game="partymatch" href="https://play.google.com/store/apps/details?id=com.games.partymatch&hl=en&gl=US" target="_blank">
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/partymatch_1024x1024_icon.png" alt="Party Match" />
       <div class="game-name">Party Match: Do Not Fall</div>
       <div class="game-downloads">📥 1M+ Downloads</div>
@@ -516,7 +599,7 @@
       <div class="game-name">Rival Realms</div>
       <div class="game-downloads">📥 100+ Downloads</div>
     </a>
-    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.kiwert.mineadventure" target="_blank">
+    <a class="game-card" data-game="minesurvive" href="https://play.google.com/store/apps/details?id=com.kiwert.mineadventure" target="_blank">
       <img class="game-icon" src="https://play-lh.googleusercontent.com/xzWJs9wQcMlpQzABaE_QQH_TvmBj6apLPPFD_UwazixOQuk9zfTvpQz6wiGLH5NwKSGGYo24xD2_-rAumqDVAw=w240-h480" alt="Mine Adventure" />
       <div class="game-name">Mine Adventure: Survival RPG</div>
       <div class="game-downloads">📥 5K+ Downloads</div>
@@ -526,7 +609,7 @@
       <div class="game-name">Rat Killer Robot Invasion</div>
       <div class="game-downloads">📥 100K+ Downloads</div>
     </a>
-    <a class="game-card" href="https://apps.apple.com/us/app/train-invasion/id6751881247" target="_blank">
+    <a class="game-card" data-game="traininvasion" href="https://apps.apple.com/us/app/train-invasion/id6751881247" target="_blank">
       <img class="game-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/be/8c/d4/be8cd464-ffb6-a3ad-a091-40e23bb69921/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/1200x630wa.jpg" alt="Train Invasion" />
       <div class="game-name">Train Invasion</div>
       <div class="game-downloads">🍎 iOS Exclusive</div>
@@ -579,7 +662,7 @@
       <div class="game-name">Merge Battle</div>
       <div class="game-downloads">📥 500K+ Downloads</div>
     </a>
-    <a class="game-card" href="https://play.google.com/store/apps/details?id=com.games.whoiskiller" target="_blank">
+    <a class="game-card" data-game="whoiskiller" href="https://play.google.com/store/apps/details?id=com.games.whoiskiller" target="_blank">
       <img class="game-icon" src="https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-8.png" alt="Who Is Killer" />
       <div class="game-name">Who Is Killer</div>
       <div class="game-downloads">📥 100K+ Downloads</div>
@@ -625,6 +708,35 @@
   <div class="footer-text">Senior Unity Developer · 10+ Years · 70+ Games · 50M+ Downloads</div>
 </footer>
 
+<!-- GAME DETAIL VIEW -->
+<div class="gd" id="gameDetail" role="dialog" aria-modal="true" aria-labelledby="gdTitle">
+  <div class="gd-inner">
+    <button class="gd-back" id="gdBack" type="button">← Back to Portfolio</button>
+    <div class="gd-header">
+      <img class="gd-icon" id="gdIcon" alt="" />
+      <div>
+        <div class="gd-genre" id="gdGenre"></div>
+        <h2 class="gd-title" id="gdTitle"></h2>
+      </div>
+    </div>
+    <div class="gd-stats" id="gdStats"></div>
+    <div class="gd-grid">
+      <div class="gd-info">
+        <div class="gd-card">
+          <h3>About</h3>
+          <div id="gdDesc"></div>
+          <div class="gd-feat" id="gdFeatWrap">
+            <h4>Highlights</h4>
+            <ul id="gdFeat"></ul>
+          </div>
+        </div>
+        <div class="gd-links" id="gdLinks"></div>
+      </div>
+      <div class="gd-media"><div class="gd-frame" id="gdMedia"></div></div>
+    </div>
+  </div>
+</div>
+
 <script>
   // Mobile nav
   document.querySelectorAll('.nav-links a').forEach(link => {
@@ -669,6 +781,182 @@
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s';
     observer.observe(el);
   });
+
+  // Game detail view — add a game by adding an entry here and data-game="<id>" on its card.
+  // video: YouTube video ID.
+  // play / ios: store URLs (leave out if the game is not published).
+  const GAMES = {
+    webmaster: {
+      title: 'Web Master: Stickman Superhero',
+      genre: 'Action · Hyper-Casual',
+      icon: 'https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/game-iconx512.png',
+      about: [
+        'A hyper-casual action game starring a stickman superhero. It became a globally top-charting title on Google Play, ranking in the Top #100 worldwide and passing 50 million downloads.',
+        'Built end to end in Unity at Kob Games Studio, with a focus on a tight, repeatable gameplay loop and smooth mobile performance.'
+      ],
+      highlights: ['Top #100 on the Play Store worldwide', 'Over 50 million Play Store downloads', 'Built in Unity by Kob Games Studio'],
+      stats: [['50M+', 'Downloads'], ['Top #100', 'Global chart']],
+      video: '7osM1j7PVDI',
+      play: 'https://play.google.com/store/apps/details?id=com.games.webmaster&hl=en&gl=US'
+    },
+    dragonbound: {
+      title: 'Dragon Bound',
+      genre: 'Action',
+      icon: 'images/dragonbound.png',
+      about: [
+        'An action game where a sword-wielding hero fights dragons. The initial launch posted standout engagement numbers, with players spending close to an hour in the game on day one.',
+        'Built in Unity at Kiwert. Dragon Bound v2 is currently in development.'
+      ],
+      highlights: ['50 min average D0 playtime and 45 min on D1', '35% D0 retention and 15% D3 retention', 'Version 2 in active development'],
+      stats: [['50 min', 'D0 playtime'], ['45 min', 'D1 playtime'], ['35%', 'D0 retention'], ['15%', 'D3 retention']],
+      video: 'FnhtPsQuGQo',
+      play: 'https://play.google.com/store/apps/details?id=com.kiwert.dragonbound'
+    },
+    partymatch: {
+      title: 'Party Match: Do Not Fall',
+      genre: 'Action · Casual',
+      icon: 'https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/partymatch_1024x1024_icon.png',
+      about: [
+        'A fast, casual party game built around one simple rule: do not fall. Easy to pick up, and quick to replay.',
+        'Built in Unity at Kob Games Studio, and passed 1 million downloads on Google Play.'
+      ],
+      highlights: ['1M+ Google Play downloads', 'Built in Unity by Kob Games Studio'],
+      stats: [['1M+', 'Downloads']],
+      video: '4H1Og0Hz6_o',
+      play: 'https://play.google.com/store/apps/details?id=com.games.partymatch&hl=en&gl=US'
+    },
+    aquahero: {
+      title: 'Aqua Hero',
+      genre: 'Action',
+      icon: 'images/aquahero.png',
+      about: [
+        'Aqua Hero is a Unity mobile game from Kiwert, available on Google Play.'
+      ],
+      highlights: ['Built in Unity by Kiwert', '5K+ Google Play downloads'],
+      stats: [['5K+', 'Downloads']],
+      video: 'hS0FxxT5Iok',
+      play: 'https://play.google.com/store/apps/details?id=com.kiwert.aquahero&hl=en'
+    },
+    breakthewall: {
+      title: 'Break The Wall',
+      genre: 'Action · Casual',
+      icon: 'https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-7.png',
+      about: [
+        'A casual action game built in Unity, with over 1 million downloads on Google Play.'
+      ],
+      highlights: ['1M+ Google Play downloads', 'Built in Unity'],
+      stats: [['1M+', 'Downloads']],
+      video: 'ijwBedFXwdY',
+      play: 'https://play.google.com/store/apps/details?id=com.games.breakthewall'
+    },
+    traininvasion: {
+      title: 'Train Invasion',
+      genre: 'Action',
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/be/8c/d4/be8cd464-ffb6-a3ad-a091-40e23bb69921/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/1200x630wa.jpg',
+      about: [
+        'Train Invasion is an iOS-exclusive action game built in Unity.'
+      ],
+      highlights: ['iOS exclusive', 'Built in Unity'],
+      stats: [],
+      video: 'v9FRhNvxz3M',
+      ios: 'https://apps.apple.com/us/app/train-invasion/id6751881247'
+    },
+    minesurvive: {
+      title: 'Mine Adventure: Survival RPG',
+      genre: 'Action · Survival RPG',
+      icon: 'https://play-lh.googleusercontent.com/xzWJs9wQcMlpQzABaE_QQH_TvmBj6apLPPFD_UwazixOQuk9zfTvpQz6wiGLH5NwKSGGYo24xD2_-rAumqDVAw=w240-h480',
+      about: [
+        'A survival RPG built in Unity at Kiwert, available on Google Play.'
+      ],
+      highlights: ['Built in Unity by Kiwert', '5K+ Google Play downloads'],
+      stats: [['5K+', 'Downloads']],
+      video: 'zmwNz6KNMmw',
+      play: 'https://play.google.com/store/apps/details?id=com.kiwert.mineadventure'
+    },
+    whoiskiller: {
+      title: 'Who Is Killer',
+      genre: 'Adventure',
+      icon: 'https://rizwanonlinecv.wordpress.com/wp-content/uploads/2024/01/unnamed-8.png',
+      about: [
+        'A mystery-themed mobile game built in Unity, with over 100K downloads on Google Play.'
+      ],
+      highlights: ['100K+ Google Play downloads', 'Built in Unity'],
+      stats: [['100K+', 'Downloads']],
+      video: 'xQ3WS7hisvA',
+      play: 'https://play.google.com/store/apps/details?id=com.games.whoiskiller'
+    }
+  };
+
+  const gd = document.getElementById('gameDetail');
+  const gdMedia = document.getElementById('gdMedia');
+  const esc = t => { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; };
+  let gdScroll = 0;
+  let gdByClick = false;
+
+  const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><polygon points="5,3 19,12 5,21" fill="#fff"/></svg>';
+  const APPLE_ICON = '<svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.2.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-.9-2.5-3.8zM14.1 5.7c.6-.8 1.1-1.8.9-2.9-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2-.5 2.8-1.3z"/></svg>';
+
+  function renderGame(id) {
+    const g = GAMES[id];
+    if (!g) return false;
+    document.title = g.title + ' – Rizwan Sadiq';
+    const icon = document.getElementById('gdIcon');
+    icon.src = g.icon; icon.alt = g.title;
+    document.getElementById('gdGenre').textContent = g.genre || '';
+    document.getElementById('gdTitle').textContent = g.title;
+    document.getElementById('gdStats').innerHTML = (g.stats || []).map(s => `<div class="gd-stat"><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join('');
+    document.getElementById('gdDesc').innerHTML = (g.about || []).map(t => `<p>${esc(t)}</p>`).join('');
+    document.getElementById('gdFeatWrap').style.display = (g.highlights || []).length ? '' : 'none';
+    document.getElementById('gdFeat').innerHTML = (g.highlights || []).map(t => `<li>${esc(t)}</li>`).join('');
+    const links = [];
+    if (g.play) links.push(`<a class="gd-store" href="${g.play}" target="_blank" rel="noopener noreferrer">${PLAY_ICON}<span><small>Get it on</small><strong>Google Play</strong></span></a>`);
+    if (g.ios) links.push(`<a class="gd-store" href="${g.ios}" target="_blank" rel="noopener noreferrer">${APPLE_ICON}<span><small>Download on the</small><strong>App Store</strong></span></a>`);
+    document.getElementById('gdLinks').innerHTML = links.join('');
+    gdMedia.innerHTML = g.video
+      ? `<iframe src="https://www.youtube.com/embed/${g.video}?rel=0&modestbranding=1" title="${esc(g.title)} gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+      : `<div class="gd-poster"><img src="${g.icon}" alt="" /><span>Gameplay video coming soon</span></div>`;
+    return true;
+  }
+
+  function openGame(id) {
+    if (!renderGame(id)) return;
+    if (!gd.classList.contains('open')) gdScroll = window.scrollY;
+    gd.classList.add('open');
+    gd.scrollTop = 0;
+    document.body.classList.add('gd-lock');
+  }
+
+  function closeGame() {
+    gd.classList.remove('open');
+    gdMedia.innerHTML = '';
+    document.body.classList.remove('gd-lock');
+    document.title = 'Rizwan Sadiq – Senior Unity Developer';
+    window.scrollTo(0, gdScroll);
+  }
+
+  function syncGameFromHash() {
+    const m = location.hash.match(/^#game=([\w-]+)$/);
+    if (m && GAMES[m[1]]) openGame(m[1]);
+    else if (gd.classList.contains('open')) closeGame();
+  }
+
+  document.querySelectorAll('.game-card[data-game]').forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault();
+      gdByClick = true;
+      location.hash = 'game=' + card.dataset.game;
+    });
+  });
+  document.getElementById('gdBack').addEventListener('click', () => {
+    if (gdByClick) { gdByClick = false; history.back(); }
+    else location.hash = 'portfolio';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && gd.classList.contains('open')) document.getElementById('gdBack').click();
+  });
+  window.addEventListener('hashchange', syncGameFromHash);
+  syncGameFromHash();
 </script>
 </body>
 </html>
