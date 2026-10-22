@@ -161,10 +161,7 @@
     .cursor-ring { position: fixed; left: 0; top: 0; width: 36px; height: 36px; border: 1.5px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; opacity: 0; scale: 1; transition: opacity .25s, scale .25s, background .25s; box-shadow: 0 0 14px rgba(0,229,255,0.35); }
     .cursor-ring.on { opacity: .85; }
     .cursor-ring.grow { scale: 1.7; background: rgba(0,229,255,0.08); }
-    .hero-hint { position: absolute; right: max(8%, calc((100% - 1360px) / 2)); bottom: 18px; z-index: 1; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--dim); text-transform: uppercase; opacity: 0; transition: opacity .6s; pointer-events: none; }
-    .hero-hint.show { opacity: .8; }
-    .web-shot { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 97; }
-    @media (hover: none), (max-width: 900px) { .hero-hint, .cursor-ring { display: none; } }
+    @media (hover: none), (max-width: 900px) { .cursor-ring { display: none; } }
 
     /* LARGE SCREENS */
     @media (min-width: 1800px) {
@@ -433,7 +430,6 @@
     <canvas class="hero-canvas"></canvas>
     <div class="hero-spot"></div>
   </div>
-  <div class="hero-hint" id="heroHint">🕸 Move your mouse · click anywhere to shoot a web</div>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-tag">Open to Remote &amp; On-Site Roles</div>
@@ -1080,7 +1076,7 @@
   window.addEventListener('hashchange', syncGameFromHash);
   syncGameFromHash();
 
-  // Hero interactivity — count-up stats, typewriter title, cursor effects, web shooting.
+  // Hero interactivity — count-up stats, typewriter title and cursor effects.
   // Pointer effects run only with a fine pointer; everything is skipped for reduced motion.
   (function () {
     const hero = document.getElementById('hero');
@@ -1130,7 +1126,6 @@
     const dots = hero.querySelector('.hero-dots');
     const spot = hero.querySelector('.hero-spot');
     const ring = document.getElementById('cursorRing');
-    const hint = document.getElementById('heroHint');
     const magnets = [...hero.querySelectorAll('.hero-btns .btn')];
     const cv = hero.querySelector('.hero-canvas');
     const ctx = cv.getContext('2d');
@@ -1227,41 +1222,14 @@
       ring.classList.toggle('grow', !!e.target.closest('a, button, [data-game]'));
       start();
     });
-    hero.addEventListener('mouseleave', () => { inside = false; spot.classList.remove('on'); ring.classList.remove('on'); });
-
-    // Web shooting from Spidey on click
-    const spideyImg = document.getElementById('spidey-img');
-    function shootWeb(x, y) {
-      const wrap = document.getElementById('spidey-wrap');
-      if (!spideyImg || getComputedStyle(wrap).display === 'none') return;
-      const sr = spideyImg.getBoundingClientRect(), ox = sr.left + sr.width / 2, oy = sr.top + sr.height * .55;
-      const NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg');
-      svg.setAttribute('class', 'web-shot');
-      const len = Math.hypot(x - ox, y - oy);
-      const mk = (name, attrs) => { const el = document.createElementNS(NS, name); for (const k in attrs) el.setAttribute(k, attrs[k]); svg.appendChild(el); return el; };
-      const line = mk('line', { x1: ox, y1: oy, x2: x, y2: y, stroke: 'rgba(255,255,255,.95)', 'stroke-width': 1.6, 'stroke-linecap': 'round' });
-      const splat = mk('g', { opacity: 0 });
-      for (let i = 0; i < 6; i++) {
-        const a = i * Math.PI / 3, g = document.createElementNS(NS, 'line');
-        g.setAttribute('x1', x); g.setAttribute('y1', y); g.setAttribute('x2', x + Math.cos(a) * 12); g.setAttribute('y2', y + Math.sin(a) * 12);
-        g.setAttribute('stroke', 'rgba(255,255,255,.9)'); g.setAttribute('stroke-width', 1.2); splat.appendChild(g);
-      }
-      const ringEl = document.createElementNS(NS, 'circle');
-      ringEl.setAttribute('cx', x); ringEl.setAttribute('cy', y); ringEl.setAttribute('r', 7); ringEl.setAttribute('fill', 'none');
-      ringEl.setAttribute('stroke', 'rgba(255,255,255,.8)'); ringEl.setAttribute('stroke-width', 1); splat.appendChild(ringEl);
-      document.body.appendChild(svg);
-      line.animate([{ strokeDasharray: len, strokeDashoffset: len }, { strokeDasharray: len, strokeDashoffset: 0 }], { duration: 170, easing: 'ease-out', fill: 'forwards' });
-      splat.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 120, delay: 150, fill: 'forwards' });
-      setTimeout(() => svg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 450, fill: 'forwards' }), 650);
-      setTimeout(() => svg.remove(), 1200);
-      setTimeout(() => { const hr = hero.getBoundingClientRect(); burst(x - hr.left, y - hr.top); }, 160);
-    }
     hero.addEventListener('click', e => {
       if (e.target.closest('a, button, [data-game], #spidey-wrap')) return;
-      shootWeb(e.clientX, e.clientY);
-      hint.classList.remove('show'); hint.dataset.done = '1';
+      const hr = hero.getBoundingClientRect();
+      burst(e.clientX - hr.left, e.clientY - hr.top);
+      start();
     });
-    setTimeout(() => { if (!hint.dataset.done) hint.classList.add('show'); }, 3500);
+    hero.addEventListener('mouseleave', () => { inside = false; spot.classList.remove('on'); ring.classList.remove('on'); });
+
     start();
   })();
 </script>
